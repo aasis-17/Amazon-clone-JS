@@ -113,7 +113,7 @@ body{
   }
   .js-container .main {
     display: grid;
-    grid-template-columns: 100px 1fr 200px 200px;
+    grid-template-columns: 100px 1fr 200px 200px 20px;
     height: 30px;
     font-size: 20px;
     text-align: center;
@@ -126,6 +126,24 @@ body{
     margin-inline: auto;
     border: none;
     outline: none;
-    
+  }
 
+  .footer{
+    display: flex;
+    height: 30px;
+    background-color: gray;
+    font-size: 20px;
+    padding-right: 85px;
+    padding-left: 30px;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
+
+  }
+  .js-h2{
+    text-align: center;
+
+  }
+  .js-button{
+    cursor: pointer;
   }

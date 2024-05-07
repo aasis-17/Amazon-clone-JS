@@ -1,3 +1,4 @@
+
 const productParam = new URLSearchParams(location.search).get('id')
 const title = document.querySelector('.js-title')
 const asideLeft = document.querySelector('.aside-left')
@@ -46,7 +47,8 @@ let quantityPrice = ''
         id : product.id,
         price : quantityPrice,
         quantity: quantity,
-        name : product.title 
+        name : product.title,
+        eachPrice :  product.price
       })
   }else{
    const index = id.indexOf(product.id)
@@ -56,10 +58,11 @@ let quantityPrice = ''
     
     localStorage.setItem('cart', JSON.stringify(cart))
     const cartElement = document.querySelector('.anchora')
-  const span = document.createElement('span')
-  span.className = 'cartSpan'
-  span.textContent = cart.length?`${cart.length}`: ''
-   cartElement.append(span)
+    const span = document.createElement('span')
+    span.className = 'cartSpan'
+    span.textContent = cart.length?`${cart.length}`: ''
+    cartElement.append(span)
+
     
   })
  

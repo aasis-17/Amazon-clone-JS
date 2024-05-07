@@ -6,7 +6,9 @@ async function getProducts(){
   getData(data)
   productSlider(data)
   }
-  getProducts()
+  getProducts().catch((err)=>{
+    console.log(`there is error ${err}`)
+  })
 
 //for image slider in first section
 
@@ -84,10 +86,12 @@ leftBtn.addEventListener('click',()=>{
   });
   
   document.querySelector('.cardContainer').innerHTML = productsHtml; 
-  
+
+  if(cart[0]){
   const cartElement = document.querySelector('.anchora')
   const span = document.createElement('span')
   span.className = 'cartSpan'
-  span.textContent = cart.length?`${cart.length}`: ''
-   cartElement.append(span)
+  span.textContent = cart.length
+  cartElement.append(span)
+  }
 }
