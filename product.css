@@ -1,0 +1,143 @@
+body{
+  margin: 0;
+  padding: 0;
+}
+header{
+  width: 100%;
+  height: 60px;
+  background-color: black;
+  color: white;
+  position:fixed;
+  z-index: 99;
+}
+.container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.logo{
+  width: 100px;
+  
+}
+.input1{
+  display: flex;
+  align-items: center;
+}
+.input{
+  height: 35px;
+  border-end-end-radius: 0px;
+  border-top-right-radius: 0px;
+  border:solid;
+  border-color: white;
+  border-width: 2px;
+  border-right: none;
+  font-size: 17px;
+
+}
+.input:hover{
+  
+  border-color: rgb(255, 165, 0);
+}
+.inputBtn{
+  width: 45px;
+  height: 41px;
+  border-end-end-radius: 3px;
+  border-top-right-radius: 3px;
+  border:none;
+  background-color: rgb(244, 180, 61);
+}
+.inputBtn:hover{
+  background-color: rgb(255, 165, 0);
+}
+.inputAll{
+  width:55px;
+  height:41px;
+  border: none;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  font-size: smaller;
+}
+.search{
+  width: 20px;
+}
+.anchor{
+  cursor: pointer;
+}
+
+.anchora{
+ display: flex;
+ color: white;
+ position: relative;
+ text-decoration: none;
+ 
+ i{
+  font-size: 30px;
+  padding-top: 3px;
+}
+strong{
+  padding-top: 20px;
+  padding-left: 7px;
+}
+}
+.cartSpan{
+  width: 15px;
+  height: 15px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  background-color: rgb(231, 8, 8);
+  color: white;
+  border-radius: 50%;
+  position: absolute;
+  left: 20px;
+  top: -5px;
+}
+
+main{
+    width: 100%;
+    height: 500vh;
+    display:grid;
+    grid-template-columns: 300px 1fr 250px;
+    column-gap: 30px;
+    
+}
+.aside-left{
+    height: 500px;
+    margin-left: 20px;
+    margin-top: 70px;
+}
+.aside-image{
+    width: 250px;
+    height: 100%;
+    object-fit: cover;
+   
+}
+.middle{
+    
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    
+   
+    
+}
+.aside-right{
+    width: 100%;
+    height: 500px;
+    margin-top: 50px;
+    
+
+}
+.right{
+    width: 230px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0px 0px 0.5px gray;
+    border-radius: 5px;
+    justify-content: left;
+    margin-top: 50px;
+    
+    
+}
