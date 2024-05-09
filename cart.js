@@ -5,10 +5,47 @@ const cartContainer = document.querySelector('.js-container')
 const cartFooter = document.querySelector('.footer')
 const cartHeader = document.querySelector('.header')
 
-let amount = ''
+
+function calculatingCart(){
+  let amount = ''
+  displayCart() 
+  validateAmount(amount)
+
+  const buttons = document.querySelectorAll('.js-button')
+  buttons.forEach((button, i) => {
+  console.log(button, i)
+  button.addEventListener('click', ()=>{
+    cart.splice(i, 1)
+    localStorage.setItem('cart',JSON.stringify(cart))
+    displayCart()
+    validateAmount(amount)
+    
+  })
+})
+
+
+}
+
+calculatingCart()
+
+
+function validateAmount(amount){
+  if(cart[0]){
+    amount = cart.map((pd) => pd.price).reduce((total, price ) => total += price, 0)
+    cartFooter.innerHTML = `<span>Total Amount : </span>
+                      <span>$${Number(amount).toFixed(2)}</span>`
+    quantityChange(amount) 
+  }else{
+   // cartHeader.remove()
+    cartFooter.remove()
+    cartContainer.innerHTML = `<h2 class = "js-h2">No Orber Placed Yet !<br>
+    <i class="fa-solid fa-circle-exclamation"></i> </h2>`
+  }
+}
+
+
 function displayCart(){
-  let carts = ''
- 
+let carts = ''
 cart.forEach((bill, i) => {
     const cartHtml = `  <div class="main">
 <span class="productNo">${i +1}</span>
@@ -20,59 +57,35 @@ cart.forEach((bill, i) => {
 carts += cartHtml
 })
     cartContainer.innerHTML = carts
+}
 
-    const buttons = document.querySelectorAll('.js-button')
-    buttons.forEach((button, i) => {
-  console.log(button, i)
-  button.addEventListener('click', ()=>{
-    cart.splice(i, 1)
-    localStorage.setItem('cart',JSON.stringify(cart))
-    totalAmount()
-    displayCart()
-  
+
+function quantityChange(amount){
+  const inputQuantity = document.querySelectorAll('.pQuantity')
+  inputQuantity.forEach((order, i)=>{
+    console.log(order, i)
+    order.addEventListener('click', (e) =>{
+      console.log(i)
+      cart[i].quantity = e.target.value
+
+      if(cart[i].quantity === '0'){
+        if(confirm('Do you want to delete this product')) {
+          cart.splice(i, 1)
+          localStorage.setItem('cart',JSON.stringify(cart))
+          displayCart()
+         validateAmount(amount)
+        }else{
+          cart[i].quantity = '1'
+          displayCart()
+          validateAmount(amount)
+        }
+      }else{
+      cart[i].price = cart[i].quantity * cart[i].eachPrice
+      localStorage.setItem('cart',JSON.stringify(cart))
+      console.log(cart)
+      displayCart()
+      validateAmount(amount)
+      }
+    })
   })
-})
-
-
 }
-
-displayCart() 
-totalAmount()
-
-
-function totalAmount(){
-  if(cart[0]){
-    amount = cart.map((pd) => pd.price).reduce((total, price ) => total += price, 0)
-    cartFooter.innerHTML = `<span>Total Amount : </span>
-                      <span>$${Number(amount).toFixed(2)}</span>`
-    
-                      const inputQuantity = document.querySelectorAll('.pQuantity')
-                      inputQuantity.forEach((button, i)=>{
-                        button.addEventListener('click', (e) =>{
-                         
-                          cart[i].quantity = e.target.value
-                          if(cart[i].quantity === '0'){
-                            if(confirm('Do you want to delete this product')) {
-                              cart.splice(i, 1)
-                              localStorage.setItem('cart',JSON.stringify(cart))
-                              displayCart()
-                          totalAmount()
-                            }
-                          }else{
-                          cart[i].price = (e.target.value) * cart[i].eachPrice
-                          localStorage.setItem('cart',JSON.stringify(cart))
-                          console.log(cart)
-                          displayCart()
-                          totalAmount()
-                          }
-                        })
-                      })
-    
-  }else{
-   // cartHeader.remove()
-    cartFooter.remove()
-    cartContainer.innerHTML = `<h2 class = "js-h2">No Orber Placed Yet !<br>
-    <i class="fa-solid fa-circle-exclamation"></i> </h2>`
-  }
-}
-

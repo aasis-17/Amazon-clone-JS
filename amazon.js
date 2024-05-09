@@ -66,11 +66,24 @@ leftBtn.addEventListener('click',()=>{
 }
 
   
+
+const inputElement = document.querySelector('.input')
+
   function getData(products){
-  
+  let input = ''
+  let data = products.filter((product) => product.title.toLowerCase().includes(input.toLowerCase()))
+  inputElement.addEventListener('keydown', (e)=>{
+   input = e.target.value
+   data = products.filter((product) => product.title.toLowerCase().includes(input.toLowerCase()))
+   displayData(data)
+})
+ 
+displayData(data)
+}  
+
+function displayData(data){
   let productsHtml ='';
-  products.forEach((product)=>{
-    console.log(product)
+  data.map((product)=>{
     const html = `
     <div  class="card" id = "${product.id}" >
     <span class="cardTop">${product.title}</span>
@@ -83,7 +96,7 @@ leftBtn.addEventListener('click',()=>{
   </div>`
   
   productsHtml += html
-  });
+  })
   
   document.querySelector('.cardContainer').innerHTML = productsHtml; 
 
@@ -93,5 +106,7 @@ leftBtn.addEventListener('click',()=>{
   span.className = 'cartSpan'
   span.textContent = cart.length
   cartElement.append(span)
-  }
-}
+  }  
+
+
+ }
